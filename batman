@@ -105,6 +105,16 @@ elseif game.PlaceId == 3956818381 then
             wait(0.5)
         end
     end)
+        MainSection:NewToggle("AFK", "Go outside while we work:)", function(v)
+            
+            local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+        end)
+
      --PLAYERS
      local Player = Window:NewTab("Player")
      local PlayerSection = Player:NewSection("Player")
@@ -627,10 +637,39 @@ end)
         end
     end)
 
+    elseif game.PlaceId == 5977280685 then  
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("BatHub | Ninja Legends 2", "Ocean")
+        local Main = Window:NewTab("Main")
+        local MainSection = Main:NewSection("Main")
+        MainSection:NewToggle("AutoSwing", "autoswings for you", function(v)
+            getgenv().autoswing = v
+        while true do
+            if not getgenv().autoswing then return end
+            for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:FindFirstChild("ninjitsuGain") then
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                    break
+                end
+            end
+            local A_1 = "swingBlade"
+            local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+            Event:FireServer(A_1)
+            wait(0.1)
 end
+    end)
+end
+
+
+
+
+        
+
+
+
+
+
 
 
        
         
-
-
