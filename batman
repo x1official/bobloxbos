@@ -635,8 +635,12 @@ end)
                 })
             end
         end
+        MainSection:NewButton("Test", "Does Nothing", function()
+            print("Clicked")
+        
+        end) 
     end)
-
+    
     elseif game.PlaceId == 5977280685 then  
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
         local Window = Library.CreateLib("BatHub | Ninja Legends 2", "Ocean")
