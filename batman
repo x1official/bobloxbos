@@ -646,23 +646,52 @@ end)
         local Window = Library.CreateLib("BatHub | Ninja Legends 2", "Ocean")
         local Main = Window:NewTab("Main")
         local MainSection = Main:NewSection("Main")
-        MainSection:NewToggle("AutoSwing", "autoswings for you", function(v)
-            getgenv().autoswing = v
-        while true do
-            if not getgenv().autoswing then return end
-            for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v:FindFirstChild("ninjitsuGain") then
-                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                    break
+        MainSection:NewToggle("AutoSwing (SEMI WORKS)", "autoswings for you", function(v)
+            getgenv().autoswing = v 
+            while true do
+                for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v:FindFirstChild("ninjitsuGain") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                        break
+                    end
                 end
+                if not getgenv().autoswing then return end
+                local args = {
+                    [1] = "swingBlade",
+                }
+                game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
+                wait(0.1)
             end
-            local A_1 = "swingBlade"
-            local Event = game:GetService("Players").LocalPlayer.ninjaEvent
-            Event:FireServer(A_1)
-            wait(0.1)
-end
-    end)
-end
+        end)
+        MainSection:NewToggle("AutoSells (NO WORK)", "autosells for you", function(v)
+            getgenv().autosell = v
+            while true do
+                if getgenv().autoswing == false then return end
+                game:GetService("Workspace").sellTeleportPart.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                wait(0.1)
+                game:GetService("Workspace").sellTeleportPart.circleInner.CFrame = CFrame.new(0,0,0)
+                wait(0.1)
+            end
+        end)
+        elseif game.PlaceId == 2041312716 then
+            local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+            local Window = Library.CreateLib("BatHub | Ragdoll", "Ocean")
+            
+            local Main = Window:NewTab("Main")
+            local MainSection = Main:NewSection("Main")
+            
+            MainSection:NewButton("CMDX", "gives you a cmd list", function()
+                      loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+            
+                end)
+            end
+    
+
+
+    
+
+
+
 
 
 
