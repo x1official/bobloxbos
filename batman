@@ -665,7 +665,7 @@ game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
             end
             end
             end
-                    end)
+            end)
                 
 
     
@@ -754,9 +754,63 @@ game:GetService("Workspace").Monster.Mon.ChildRemoved:Connect(function() -- WHEN
     end
     mobdropdown:Refresh(mobs)
 end)
-elseif game.PlaceId == 4520749081 then  
-    
-end
+elseif game.PlaceId == 3101667897 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("BatHub | Legend of Speed", "Ocean")
+    --MAIN
+     local Main = Window:NewTab("Main")
+     local MainSection = Main:NewSection("Main") 
+     MainSection:NewButton("Mega AutoFarm", "Fast AutoFarm", function()
+         --AUTOFARM
+        game:GetService('RunService').RenderStepped:connect(function()
+            for i=1, math.huge do
+            while wait() do
+            
+            wait()
+            
+            local A_1 = "rebirthRequest"
+            local Event = game:GetService("ReplicatedStorage").rEvents.rebirthEvent
+            Event:FireServer(A_1)
+            
+            local tbl_main =
+            {
+                 "collectOrb",
+                 "Orange Orb",
+                 "City"
+            }
+            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+            
+            local shroud = game.Workspace.Hoops
+            local plr = game.Players.LocalPlayer.Character.HumanoidRootPart
+            for i,v in pairs(shroud:GetChildren()) do
+              if v.Name == 'Hoop' then
+            v.CFrame = plr.CFrame    
+            
+            end
+            end
+            spawn(function()
+                while wait() do
+                    game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+                end
+            end)
+            spawn(function()
+            while wait() do
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Orange Orb", "City")
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+            end end)
+            end end end)
+            end)
+         --PLAYERS
+    local Player = Window:NewTab("Player")
+    local PlayerSection = Player:NewSection("Player")
+    PlayerSection:NewSlider("Walkspeed", "Changes your walkspeed", 350, 16, function(v) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    local PlayerSection = Player:NewSection("Player")
+    PlayerSection:NewSlider("Jumppower", "Changes your Jumppower", 350, 50, function(v) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+        end)
+    end
         
           
             
