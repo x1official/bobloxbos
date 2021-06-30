@@ -809,11 +809,57 @@ elseif game.PlaceId == 3101667897 then
     local PlayerSection = Player:NewSection("Player")
     PlayerSection:NewSlider("Jumppower", "Changes your Jumppower", 350, 50, function(v) -- 500 (MaxValue) | 0 (MinValue)
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
-        end)
-    end
-        
-          
-            
+    end)            
+            elseif game.PlaceId == 189707 then
+            local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+            local Window = Library.CreateLib("BatHub | Natural Disaster Survival", "Ocean")
+            --MAIN
+             local Main = Window:NewTab("Main")
+            local MainSection = Main:NewSection("Main")
+            MainSection:NewSlider("Walkspeed", "LocalPlayers Walkspeed", 500, 40, function(Val) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Val end)
+            MainSection:NewSlider("JumpPower", "LocalPlayers Jump height", 500, 40, function(Val) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Val end)
+            MainSection:NewButton("Btools", "LocalPlayer Toolbox", function(v) 
+            game.StarterGui:SetCoreGuiEnabled(2, true)
+            a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            a.BinType = 2
+            b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            b.BinType = 3
+            c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+            c.BinType = 4 end)
+            MainSection:NewButton("Noclip (Press F)", "Walk Through Walls", function(key)
+                noclip = false
+                game:GetService('RunService').Stepped:connect(function()
+                if noclip then
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
+                end)
+                plr = game.Players.LocalPlayer
+                mouse = plr:GetMouse()
+                mouse.KeyDown:connect(function(key)
+                
+                if key == "f" then
+                noclip = not noclip
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
+                end) end)
+
+                local Teleports = Window:NewTab("Teleport")
+                local TeleportsSection = Teleports:NewSection("Teleport")
+            TeleportsSection:NewButton("random player", "TPS you to a random player", function(v)
+
+            local randomPlayer = game.Players:GetPlayers()
+            [math.random(1,#game.Players:GetPlayers())]
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(randomPlayer.Character.Head.Position.X, randomPlayer.Character.Head.Position.Y, randomPlayer.Character.Head.Position.Z)) end)
+            TeleportsSection:NewButton("Lobby", "Tps you to the lobby", function(v)
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-241.711945, 179.598007, 299.103973)
+            end)
+            TeleportsSection:NewButton("MainMap", "Tps you to the Main Map", function(v)
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.340561, 47.3980064, 1.86407304)
+                end)
+            end
 
             
 
