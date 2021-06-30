@@ -859,7 +859,69 @@ elseif game.PlaceId == 3101667897 then
 
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.340561, 47.3980064, 1.86407304)
                 end)
-            end
+            elseif game.PlaceId == 370731277 then
+                local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+                local Window = Library.CreateLib("BatHub | MeepCity", "Ocean")
+                --MAIN
+                local Main = Window:NewTab("Main")
+                local MainSection = Main:NewSection("Main")
+                
+                MainSection:NewButton("AutoFarm", "Get ya Bread up", function()
+                    game.ReplicatedStorage.Connection:InvokeServer(9, 1)
+                game:GetService("RunService").RenderStepped:Connect(function()
+                game.ReplicatedStorage.Connection:InvokeServer(49)
+                game.ReplicatedStorage.Connection:InvokeServer(50)
+                game.ReplicatedStorage.Connection:InvokeServer(51)
+                local dekus = 11
+                local ohshit = {
+                    ["FishingPolePos"] = game:GetService("Workspace").TempFish.Position,
+                    ["Power"] = 1,
+                    ["Face"] = game:GetService("Workspace").TempFish.Position,
+                    ["PlayerPos"] = game:GetService("Workspace").TempFish.Position,
+                    ["FishingZonePos"] = Vector3.new(-5.29345703, -18.0412292, 43.7173767)
+                }
+                game:GetService("ReplicatedStorage").Connection:InvokeServer(dekus, ohshit)
+                end) end)
+                
+                MainSection:NewButton("Gamepasses", "Get all Gamepasses Free", function()
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].BoomBox.Value = true
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].PLUS.Value = true
+                game.ReplicatedStorage.PlayerData[game.Players.LocalPlayer.UserId].ChalkPass.Value = true
+                end)
+                MainSection:NewButton("Lag Switch F3", "Makes you lag", function()
+
+                    local a = false
+                    local b = settings()
+                    
+                    game:service'UserInputService'.InputEnded:connect(function(i)
+                    if i.KeyCode == Enum.KeyCode.F3 then
+                    a = not a
+                    b.Network.IncomingReplicationLag = a and 10 or 0
+                    end
+                    end) end) 
+                elseif game.PlaceId == 1962086868 then
+                    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+                    local Window = Library.CreateLib("BatHub | Tower Of Hell", "Synapse")
+                    --MAIN
+                    local Main = Window:NewTab("Main")
+                    local MainSection = Main:NewSection("Main")
+                    MainSection:NewButton("AutoFarm", "Does the work for you", function()
+                        if not game:IsLoaded() then
+                            game.Loaded:Wait()
+                        end
+                        wait(8)
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").tower.finishes.Finish.CFrame * CFrame.new(0,15,0)
+                        wait(15)
+                        for _,v in pairs(workspace:GetDescendants()) do
+                        if v:IsA("TouchTransmitter") then
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+                        wait()
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) --Something in game makes it serverhop when touched undetected 
+                        end
+                        end
+                    end)
+                    
+                end
 
             
 
